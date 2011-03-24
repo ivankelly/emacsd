@@ -2,8 +2,8 @@
 
 (load-file (expand-file-name ".emacs.d/third-party/third-party.el" "~"))
 
-(tool-bar-mode nil)
-(menu-bar-mode nil)
+(tool-bar-mode -1)
+(menu-bar-mode -1)
 (iswitchb-mode t)
 
 (put 'narrow-to-region 'disabled nil)
@@ -36,5 +36,6 @@
 (setq indent-tabs-mode nil)
 (setq show-trailing-whitespace t)
 
-(if (file-exists-p "local.el")
-    (load-file "local.el"))
+(let ((fn (expand-file-name "~/.emacs.d/local.el")))
+  (if (file-exists-p fn)
+    (load-file fn)))

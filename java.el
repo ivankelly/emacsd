@@ -24,6 +24,11 @@
   (compile (concat "ant -e -f " 
 		   (ant-find-build-xml default-directory) " " (read-input "Target: "))))
 
+(defun mvn-target ()
+  (interactive)
+  (compile (concat "mvn -f " 
+		   (mvn-find-pom-xml default-directory) " " (read-input "Target: "))))
+
 (defun ant-find-build-xml (dir &optional nowarn)
   (let ((file (expand-file-name "build.xml" dir)))
     (if (file-exists-p file)
@@ -44,7 +49,8 @@
   (let ((mvn-file (mvn-find-pom-xml default-directory t))
 	(ant-file (ant-find-build-xml default-directory t)))
     (if (and (null mvn-file) (null ant-file)) (error "No ant nor maven file found"))
-    (if (>= (length ant-file) (length mvn-file))
+    (if (> (length (file-name-directory (if (null ant-file) "" ant-file)))
+	   (length (file-name-directory (if (null mvn-file) "" mvn-file))))
 	(compile (concat "ant -e -f " ant-file " compile "))
       (compile (concat "mvn -f " mvn-file " package")))
     ))
@@ -53,6 +59,9 @@
 (add-to-list
  'compilation-error-regexp-alist
  '("^\\([/a-zA-Z\\.~_+-]*\\):\\[\\([0-9]+\\),\\([0-9]+\\)\\]" 1 2 3))
+(add-to-list
+ 'compilation-error-regexp-alist
+ '("^\\[ERROR\\] \\([/a-zA-Z\\.~_+-]*\\):\\[\\([0-9]+\\),\\([0-9]+\\)\\]" 1 2 3))
 
 
 (defun jde-add-cp ()
@@ -89,7 +98,8 @@
    "http://hc.apache.org/httpcomponents-client-ga/httpclient/apidocs/"
    "http://hbase.apache.org/apidocs/"
    "http://www.xbill.org/dnsjava/dnsjava-current/doc/"
-   "http://hc.apache.org/httpcomponents-core-ga/httpcore/apidocs/"))
+   "http://hc.apache.org/httpcomponents-core-ga/httpcore/apidocs/"
+   "http://junit.sourceforge.net/javadoc/"))
 ;(jdh-process-predefined-urls *jdh-predefined-urls*)
 
 (defun current-indent ()
