@@ -1,4 +1,12 @@
 
+(defun kill-lines-matching-string ()
+  (interactive)
+  (save-excursion 
+    (let ((match (read-input "String to match: ")))
+      (beginning-of-buffer)
+      (while (search-forward match nil t)
+	(kill-whole-line)))))
+
 (defun kill-buffer-by-file ()
   (interactive)
   (let ((str (read-string "Matching what? ")))
