@@ -24,12 +24,35 @@
    (org-indent-mode))
 (add-hook 'org-mode-hook 'my-org-hook)
 
+(defun detect-project-type (dir)
+  (let ((makefile (file-exists-p (expand-file-name "Makefile" dir)))
+	(pomfile (file-exists-p (expand-file-name "pom.xml" dir)))
+	(antfile (file-exists-p (expand-file-name "build.xml" dir))))
+    (cond 
+     (makefile 'make)
+     ((or pomfile antfile) 'java)
+     (t (if (string= dir "/") 'none (detect-project-type (file-name-directory (directory-file-name dir))))))))
+
 (defun my-compile-func ()
   (interactive)
-  (if (or (eq major-mode 'sgml-mode)
-	  (eq major-mode 'jde-mode)
-	  (eq major-mode 'java-mode))
-      (java-compile)
-    (compile "make -k")))
+  (let ((type (detect-project-type default-directory)))
+    (cond
+     ((eq type 'java) (java-compile))
+     ((eq type 'make) (compile "make -k"))
+     (t (error "Project type unknown")))))
+
+(defun my-recompile-func ()
+  (interactive)
+  (let ((type (detect-project-type default-directory)))
+    (cond
+     ((eq type 'java) (java-recompile))
+     ((eq type 'make) (compile "make -k"))
+     (t (error "Project type unknown")))))
+
+(defun kill-buffer-no-hooks () 
+  (interactive)
+  (let ((kill-buffer-hook nil)) 
+    (kill-buffer)))
 
 (global-set-key [(f10)] 'my-compile-func)
+(global-set-key [(f11)] 'my-recompile-func)

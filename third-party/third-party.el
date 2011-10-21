@@ -6,4 +6,8 @@
 (require 'session)
 (add-hook 'after-init-hook 'session-initialize)
 
+(setq load-path (cons (expand-file-name ".emacs.d/third-party/emacs-color-theme-solarized/" "~") load-path))
+
+
+
 

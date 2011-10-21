@@ -26,6 +26,7 @@
   ;; If you edit it by hand, you could mess it up, so be careful.
   ;; Your init file should contain only one such instance.
   ;; If there is more than one, they won't work right.
+ '(diff-file-header ((((class color) (min-colors 88) (background dark)) (:background "grey60" :foreground "black" :weight bold))))
  '(magit-item-highlight ((((class color) (background dark)) (:background "black"))))
  '(org-level-2 ((t (:inherit outline-2 :foreground "yellow")))))
 

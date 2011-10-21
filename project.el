@@ -12,5 +12,7 @@
     (if file
     (load-file file))))
 
-(add-hook 'java-mode-hook 'find-prj-hook)
+(add-hook 'java-mode-hook 'find-prj-hook t)
+
+
 
