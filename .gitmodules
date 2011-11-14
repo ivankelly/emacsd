@@ -1,3 +1,9 @@
 [submodule "third-party/emacs-color-theme-solarized"]
 	path = third-party/emacs-color-theme-solarized
 	url = https://github.com/sellout/emacs-color-theme-solarized.git
+[submodule "third-party/distel"]
+	path = third-party/distel
+	url = https://github.com/massemanet/distel.git
+[submodule "third-party/magit"]
+	path = third-party/magit
+	url = https://github.com/magit/magit.git

@@ -13,6 +13,7 @@
     (load-file file))))
 
 (add-hook 'java-mode-hook 'find-prj-hook t)
+(add-hook 'erlang-mode-hook 'find-prj-hook t)
 
 
 
