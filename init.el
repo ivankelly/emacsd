@@ -16,6 +16,7 @@
 (load-library "java")
 (load-library "misc")
 (load-library "project")
+(load-library "erlang-ivan")
 
 (custom-set-variables
   ;; custom-set-variables was added by Custom.
@@ -44,3 +45,4 @@
 (let ((fn (expand-file-name "~/.emacs.d/local.el")))
   (if (file-exists-p fn)
     (load-file fn)))
+
