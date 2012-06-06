@@ -20,7 +20,7 @@
   )
 
 (defun grep-source-get-ext ()
-  (cond ((eq major-mode 'c-mode) "-iname \"*.c\" -or -iname \"*.h\"")
+  (cond ((eq major-mode 'c-mode) "-iname \"*.cpp\" -or -iname \"*.c\" -or -iname \"*.h\"")
 	((eq major-mode 'emacs-lisp-mode) "-iname \"*.el\"")
 	((eq major-mode 'python-mode) "-iname \"*.py\"")
 	((eq major-mode 'c++-mode) "-iname \"*.cpp\" -or -iname \"*.h\"")

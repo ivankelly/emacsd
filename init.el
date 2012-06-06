@@ -2,8 +2,11 @@
 
 (load-file (expand-file-name ".emacs.d/third-party/third-party.el" "~"))
 
-(tool-bar-mode -1)
-(menu-bar-mode -1)
+(when (display-graphic-p)
+  (tool-bar-mode -1)
+  (menu-bar-mode -1))
+
+(column-number-mode t)
 (iswitchb-mode t)
 
 (put 'narrow-to-region 'disabled nil)
