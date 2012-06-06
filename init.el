@@ -14,6 +14,7 @@
 (load-library "misc")
 (load-library "project")
 (load-library "erlang-ivan")
+(load-library "genpw")
 
 (custom-set-variables
   ;; custom-set-variables was added by Custom.
