@@ -54,5 +54,19 @@
   (let ((kill-buffer-hook nil)) 
     (kill-buffer)))
 
+(defun view-diff-get-name (url)
+  (if (string-match ".+/\\(.+\\)\\.\\(?:diff\\|patch\\)" url)
+      (match-string 1 url)))
+
+(defun view-diff (url)
+  (interactive "sUrl: ")
+  (let* ((diff-name (view-diff-get-name url))
+	 (buf (generate-new-buffer (if diff-name
+				       (concat "*view-diff[" diff-name "]*")
+				     "*view-diff*"))))
+    (call-process "curl" nil buf t "-s" url)
+    (set-window-buffer (selected-window) buf)
+    (with-current-buffer buf (diff-mode))))
+
 (global-set-key [(f10)] 'my-compile-func)
 (global-set-key [(f11)] 'my-recompile-func)
