@@ -99,23 +99,11 @@
 (global-set-key [(f7)] 'gud-finish)
 (global-set-key [(f8)] 'gud-cont)
 
+(setq javadoc-help-setting-file (expand-file-name ".emacs.d/javadoc-source-list" "~"))
+(require 'javadoc-help)
 
-(autoload 'javadoc-lookup       "javadoc-help" "Look up Java class in Javadoc."   t)
-(autoload 'javadoc-help         "javadoc-help" "Open up the Javadoc-help menu."   t)
-(autoload 'javadoc-set-predefined-urls  "javadoc-help" "Set pre-defined urls."    t)
 (global-set-key [(f1)]          'javadoc-lookup)  ; F1 to lookup
 (global-set-key [(shift f1)]    'javadoc-help)    ; Shift-F1 to bring up men
-(javadoc-set-predefined-urls 
- '("file:///Users/ivank/Documents/java_apidoc/" 
-   "http://hadoop.apache.org/common/docs/r0.20.1/api/" 
-   "http://download.eclipse.org/jetty/stable-7/apidocs/" 
-   "http://docs.jboss.org/netty/3.2/api/"
-   "http://hc.apache.org/httpcomponents-client-ga/httpclient/apidocs/"
-   "http://hbase.apache.org/apidocs/"
-   "http://www.xbill.org/dnsjava/dnsjava-current/doc/"
-   "http://hc.apache.org/httpcomponents-core-ga/httpcore/apidocs/"
-   "http://junit.sourceforge.net/javadoc/"))
-;(jdh-process-predefined-urls *jdh-predefined-urls*)
 
 (defun current-indent ()
   (let ((outerline (outerline-indent))
