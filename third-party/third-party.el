@@ -10,6 +10,8 @@
 (require 'session)
 (add-hook 'after-init-hook 'session-initialize)
 
+(setq load-path (cons (expand-file-name ".emacs.d/third-party/color-theme-6.6.0/" "~") load-path))
+
 (setq load-path (cons (expand-file-name ".emacs.d/third-party/emacs-color-theme-solarized/" "~") load-path))
 
 ;(let ((distel-emacs (expand-file-name ".emacs.d/third-party/distel/elisp" "~")))

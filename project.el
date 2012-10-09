@@ -14,6 +14,7 @@
 
 (add-hook 'java-mode-hook 'find-prj-hook t)
 (add-hook 'erlang-mode-hook 'find-prj-hook t)
+(add-hook 'nxml-mode-hook 'find-prj-hook t)
 
 
 

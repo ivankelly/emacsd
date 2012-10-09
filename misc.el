@@ -16,7 +16,11 @@
 
 (defun notes ()
   (interactive)
-  (find-file (expand-file-name "Notes/work.org" "~")))
+  (find-file (expand-file-name (format-time-string "%Y_%m_%d.org") "~/Notes/")))
+
+(defun crib ()
+  (interactive)
+  (find-file (expand-file-name "crib.org" "~/Notes/")))
 
 
 (defun my-org-hook () 
@@ -70,3 +74,10 @@
 
 (global-set-key [(f10)] 'my-compile-func)
 (global-set-key [(f11)] 'my-recompile-func)
+
+(defalias 'find 'find-name-dired)
+
+(setq backup-directory-alist
+      `((".*" . ,temporary-file-directory)))
+(setq auto-save-file-name-transforms
+      `((".*" ,temporary-file-directory t)))
